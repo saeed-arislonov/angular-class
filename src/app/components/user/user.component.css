@@ -1,0 +1,6 @@
+ul li {
+  font-size: 32px;
+  list-style-type: none;
+  padding: 10px;
+  border-bottom: 1px solid #444;
+}

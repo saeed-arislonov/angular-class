@@ -1,0 +1,64 @@
+<div class="container">
+  <h2>USERS</h2>
+
+  
+  <button class="btn btn-dark mb-3" (click)="showUserForm = !showUserForm" >Add User</button>
+
+  <div class="card card-body mb-4" *ngIf="showUserForm">
+    
+    <form >
+      
+      <div class="form-group">
+        <label for="">First Name</label>
+        <input type="text" class="form-control" placeholder="First Name"
+        [(ngModel)]="personName" name="firstName" (keypress)="fireEvent($event)">
+      </div> 
+      
+      <h4> {{personName}} </h4>
+      
+      
+      
+      <!-- keydown, keyup, keypress, focus, blur, cut, copy, paste (paste)="fireEvent($event)"-->
+      
+      
+      <button class="btn btn-block btn-success mb-4" [disabled]="!enableUser" (click)="addUser({firstName: 'Obid', lastName:'Asomov',isActive:true})">Add User</button>
+    </form>
+    
+  </div>
+
+  
+  <!-- [ngClass]="currentClasses"-->
+
+  <ul *ngIf="users?.length > 0 && loaded" class="list-unstyled">
+    <li *ngFor="let user of users" class="card card-body mb-4" [class.bg-light]="user.isActive">
+      <!--[style.border-color]="user.isActive ? 'green' : ''"-->
+      <h3>{{user.firstName}} {{user.lastName}}
+        <small *ngIf="user.age && user.address">
+          <button class="btn btn-small btn-dark" 
+          (click)="user.hide = !user.hide">
+            <i class="fa" [ngClass]="user.hide ? 'fa-plus' : 'fa-minus'" aria-hidden="true"></i>
+          </button>
+        </small>
+      </h3>
+      <!--[ngStyle]="currentStyles" ngNonBindable-->
+
+
+
+      <ul *ngIf="!user.hide && user.age && user.address" class="list-group">
+        <li class="list-group-item">Age: {{user.age}} </li>
+        <li class="list-group-item">Address: {{user.address.street}} {{user.address.city}} {{user.address.state}} </li>
+        <li class="list-group-item">
+          Registered: {{user.registered | date:"longTime"}} </li>
+        <!-- shortDate, mediumDate, fullDate, shortTime, longTime -->
+      </ul>
+    </li>
+  </ul>
+
+  <h3 *ngIf="users?.length == 0">No users found</h3>
+
+  <!--<ng-template #noUsers>
+<h3>NO users FOundsdfs</h3></ng-template>-->
+
+
+  <!-- *ngIf  -->
+</div>
