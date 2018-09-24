@@ -9,6 +9,7 @@ import { User } from '../../models/user.model';
 })
 export class UsersComponent implements OnInit {
 
+  user: User;
   users: User[];
   showExtended: boolean;
   loaded: boolean;
@@ -18,6 +19,12 @@ export class UsersComponent implements OnInit {
   personName: string;
  /* currentClasses = {};
   currentStyles = {};*/
+  
+  onSubmit(){
+    console.log('SUBMITTED');
+    console.log(this.user)
+  }
+  
   
   addUser(user: User){
     console.log(this.users);
@@ -45,6 +52,12 @@ export class UsersComponent implements OnInit {
     this.showUserForm = true;
     this.personName = 'James Smith';
     
+    this.user = {
+      firstName : '',
+      lastName : '',
+      email: ''
+    }
+    
    // this.setCurrentClasses();
    // this.setCurrentStyles();
     
@@ -53,12 +66,7 @@ export class UsersComponent implements OnInit {
       {
         firstName: 'Ergash',
         lastName: 'Karimov',
-        age: 65,
-        address: {
-          street: '123 Main st',
-          city: 'Las Vegas',
-          state: 'Nevada'
-        },
+        email: 'ergash95@gmail.com',
         isActive: true,
         registered: new Date('01/02/2018 8:30:00:00'),
         hide: true
@@ -66,12 +74,7 @@ export class UsersComponent implements OnInit {
       {
         firstName: 'Erkin',
         lastName: 'Komilov',
-        age: 70,
-        address: {
-          street: '123 Second st',
-          city: 'Boston',
-          state: 'MA'
-        },
+        email: 'erkin45@gmail.com',
         isActive: false,
         registered: new Date('06/21/2017 12:00:00:00'),
         hide: true
@@ -79,12 +82,7 @@ export class UsersComponent implements OnInit {
       {
         firstName: 'Hojiakbar',
         lastName: 'Nurmatov',
-        age: 89,
-        address: {
-          street: '900 Ave p',
-          city: 'Brooklyn',
-          state: 'NY'
-        },
+        email: 'hoji1007@gmail.com',
         isActive: true,
         registered: new Date('08/02/2015 09:13:00:00'),
         hide: true
@@ -92,28 +90,6 @@ export class UsersComponent implements OnInit {
     ];
       
       this.loaded = true;
-      
-      /*this.addUser({
-        firstName: 'Ergash12',
-        lastName: 'Karimov12'
-    })*/
-      
-   // }, 2000);
-    
-    /*setCurrentClasses(){
-    this.currentClasses = {
-      'btn-success' : this.enableUser,
-      'big-text' : this.showExtended
-    }
-  }
-  
-  setCurrentStyles(){
-    this.currentStyles = {
-      'padding-top' : this.showExtended ? '0' : '40px',
-      'font-size' : this.showExtended ? '24px' : '42px'
-    }
-  }*/
-    
   }
   
   

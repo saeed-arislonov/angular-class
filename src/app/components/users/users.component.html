@@ -6,22 +6,69 @@
 
   <div class="card card-body mb-4" *ngIf="showUserForm">
     
-    <form >
+    <form #userForm="ngForm" (ngSubmit)="onSubmit()" >
       
       <div class="form-group">
         <label for="">First Name</label>
-        <input type="text" class="form-control" placeholder="First Name"
-        [(ngModel)]="personName" name="firstName" (keypress)="fireEvent($event)">
+        <input type="text" 
+          class="form-control" 
+          placeholder="First Name"
+          name="firstName"
+          [(ngModel)]="user.firstName" 
+          #userFirstName="ngModel"
+          required
+          minlength="2"
+          [ngClass]="{'is-invalid' : userFirstName.errors && userFirstName.touched }"
+          >
+          <div [hidden]="!userFirstName.errors?.required" class="invalid-feedback">
+            First Name is Required
+          </div>
+          <div [hidden]="!userFirstName.errors?.minlength" class="invalid-feedback">
+            First Name must be at least 2 characters long
+          </div>
       </div> 
       
-      <h4> {{personName}} </h4>
+      <div class="form-group">
+        <label for="">Last Name</label>
+        <input type="text" 
+          class="form-control" 
+          placeholder="Last Name"
+          name="lastName"
+          [(ngModel)]="user.lastName" 
+          #userLastName="ngModel"
+          required
+          minlength="2"
+          [ngClass]="{'is-invalid' : userLastName.errors && userLastName.touched }"
+          >
+          <div [hidden]="!userLastName.errors?.required" class="invalid-feedback">
+            Last Name is Required
+          </div>
+          <div [hidden]="!userLastName.errors?.minlength" class="invalid-feedback">
+            Last Name must be at least 2 characters long
+          </div>
+      </div> 
       
+      <div class="form-group">
+        <label for="">Email</label>
+        <input type="text" 
+          class="form-control" 
+          placeholder="Email"
+          name="email"
+          [(ngModel)]="user.email" 
+          #userEmail="ngModel"
+          required
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+          [ngClass]="{'is-invalid' : userEmail.errors && userEmail.touched }"
+          >
+          <div [hidden]="!userEmail.errors?.required" class="invalid-feedback">
+            Email is Required
+          </div>
+          <div [hidden]="!userEmail.errors?.pattern" class="invalid-feedback">
+            Please enter a valid email
+          </div>
+      </div> 
       
-      
-      <!-- keydown, keyup, keypress, focus, blur, cut, copy, paste (paste)="fireEvent($event)"-->
-      
-      
-      <button class="btn btn-block btn-success mb-4" [disabled]="!enableUser" (click)="addUser({firstName: 'Obid', lastName:'Asomov',isActive:true})">Add User</button>
+      <button class="btn btn-block btn-success mb-4" [disabled]="userForm.form.invalid">Add User</button>
     </form>
     
   </div>
@@ -33,7 +80,7 @@
     <li *ngFor="let user of users" class="card card-body mb-4" [class.bg-light]="user.isActive">
       <!--[style.border-color]="user.isActive ? 'green' : ''"-->
       <h3>{{user.firstName}} {{user.lastName}}
-        <small *ngIf="user.age && user.address">
+        <small>
           <button class="btn btn-small btn-dark" 
           (click)="user.hide = !user.hide">
             <i class="fa" [ngClass]="user.hide ? 'fa-plus' : 'fa-minus'" aria-hidden="true"></i>
@@ -44,11 +91,10 @@
 
 
 
-      <ul *ngIf="!user.hide && user.age && user.address" class="list-group">
-        <li class="list-group-item">Age: {{user.age}} </li>
-        <li class="list-group-item">Address: {{user.address.street}} {{user.address.city}} {{user.address.state}} </li>
+      <ul *ngIf="!user.hide" class="list-group">
+        <li class="list-group-item">Email: {{user.email}} </li>
         <li class="list-group-item">
-          Registered: {{user.registered | date:"longTime"}} </li>
+          Registered: {{user.registered | date:"medium"}} </li>
         <!-- shortDate, mediumDate, fullDate, shortTime, longTime -->
       </ul>
     </li>
