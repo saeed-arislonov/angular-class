@@ -6,7 +6,7 @@
 
   <div class="card card-body mb-4" *ngIf="showUserForm">
     
-    <form #userForm="ngForm" (ngSubmit)="onSubmit()" >
+    <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)" >
       
       <div class="form-group">
         <label for="">First Name</label>
@@ -68,7 +68,16 @@
           </div>
       </div> 
       
-      <button class="btn btn-block btn-success mb-4" [disabled]="userForm.form.invalid">Add User</button>
+      <div class="form-group">
+        <label for="">Active
+          <input type="radio" [(ngModel)]="user.isActive" value="true" name="isActive">
+        </label> &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;        
+        <label for="">Non-active
+          <input type="radio" [(ngModel)]="user.isActive" value="false" name="isActive">
+        </label>
+      </div>
+      
+      <button class="btn btn-block btn-success mb-4" >Add User</button>
     </form>
     
   </div>

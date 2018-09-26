@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { User } from '../../models/user.model';
+import { DataService } from '../../services/data.service'
+
 
 @Component({
   selector: 'app-users',
@@ -16,13 +18,29 @@ export class UsersComponent implements OnInit {
   enableUser: boolean;
   showUserForm: boolean;
   
+  @ViewChild('userForm') form: any;
+  
+  
   personName: string;
  /* currentClasses = {};
   currentStyles = {};*/
   
-  onSubmit(){
-    console.log('SUBMITTED');
-    console.log(this.user)
+  
+  /* DRY - dont repeat yourself */
+  
+  onSubmit({ value, valid } : { value: User, valid: boolean }){
+   // console.log('SUBMITTED');
+   // console.log(this.user)
+    if (!valid) {
+        console.log("Form is NOT VALID")
+    } else {
+      value.registered = new Date();
+      value.hide = true;
+      console.log(value);
+      this.dataService.addUser(value);
+      
+      this.form.reset();
+    }
   }
   
   
@@ -42,7 +60,7 @@ export class UsersComponent implements OnInit {
   
   
   
-  constructor() { }
+  constructor(private dataService: DataService) { }
   
   ngOnInit() {
     
@@ -55,39 +73,17 @@ export class UsersComponent implements OnInit {
     this.user = {
       firstName : '',
       lastName : '',
-      email: ''
-    }
+      email: '',
+      isActive: null
+    };
+    
+    this.users = this.dataService.getUsers();
     
    // this.setCurrentClasses();
    // this.setCurrentStyles();
     
    // setTimeout(() =>  {
-      this.users = [
-      {
-        firstName: 'Ergash',
-        lastName: 'Karimov',
-        email: 'ergash95@gmail.com',
-        isActive: true,
-        registered: new Date('01/02/2018 8:30:00:00'),
-        hide: true
-      },
-      {
-        firstName: 'Erkin',
-        lastName: 'Komilov',
-        email: 'erkin45@gmail.com',
-        isActive: false,
-        registered: new Date('06/21/2017 12:00:00:00'),
-        hide: true
-      },
-      {
-        firstName: 'Hojiakbar',
-        lastName: 'Nurmatov',
-        email: 'hoji1007@gmail.com',
-        isActive: true,
-        registered: new Date('08/02/2015 09:13:00:00'),
-        hide: true
-      }
-    ];
+     
       
       this.loaded = true;
   }
