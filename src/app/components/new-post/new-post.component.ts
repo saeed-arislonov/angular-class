@@ -12,8 +12,23 @@ export class NewPostComponent implements OnInit {
 
   constructor(private postService:  PostService) { }
   @Output() newPost: EventEmitter<Post> = new EventEmitter();
-
+  @Output() updatedPost: EventEmitter<Post> = new EventEmitter();
+  @Input() currentPost: Post;
+  @Input() isEdit: boolean;
   ngOnInit() {
+
+    confirm('Are you sure');
+  }
+
+
+
+  updatePost() {
+    this.postService.updatePost(this.currentPost)
+    .subscribe(post => {
+      console.log(post);
+      this.isEdit = false;
+      this.updatedPost.emit(post);
+    });
   }
 
   addPost(title, body){
