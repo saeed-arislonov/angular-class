@@ -8,6 +8,7 @@ import { UserComponent } from './components/user/user.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { UsersComponent } from './components/users/users.component';
 import { PostsComponent } from './components/posts/posts.component';
+import { NewPostComponent } from './components/new-post/new-post.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { PostsComponent } from './components/posts/posts.component';
     UserComponent,
     NavbarComponent,
     UsersComponent,
-    PostsComponent
+    PostsComponent,
+    NewPostComponent
   ],
   imports: [
     BrowserModule,
