@@ -9,6 +9,9 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { UsersComponent } from './components/users/users.component';
 import { PostsComponent } from './components/posts/posts.component';
 import { NewPostComponent } from './components/new-post/new-post.component';
+import { AppRouteModule } from './/app-route.module';
+import { HomeComponent } from './components/home/home.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -17,12 +20,15 @@ import { NewPostComponent } from './components/new-post/new-post.component';
     NavbarComponent,
     UsersComponent,
     PostsComponent,
-    NewPostComponent
+    NewPostComponent,
+    HomeComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRouteModule
   ],
   providers: [],
   bootstrap: [AppComponent]

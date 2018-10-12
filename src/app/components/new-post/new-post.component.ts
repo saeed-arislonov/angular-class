@@ -15,10 +15,7 @@ export class NewPostComponent implements OnInit {
   @Output() updatedPost: EventEmitter<Post> = new EventEmitter();
   @Input() currentPost: Post;
   @Input() isEdit: boolean;
-  ngOnInit() {
-
-    confirm('Are you sure');
-  }
+  ngOnInit() { }
 
 
 
@@ -31,11 +28,11 @@ export class NewPostComponent implements OnInit {
     });
   }
 
-  addPost(title, body){
+  addPost(title, body) {
     if (!title || !body) {
       alert('Please add Post');
     } else {
-      console.log('click')
+      console.log('click');
       this.postService.savePost({title, body} as Post)
         .subscribe(post => {
           console.log(post);
