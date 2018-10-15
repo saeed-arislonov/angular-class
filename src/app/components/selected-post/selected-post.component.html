@@ -1,0 +1,9 @@
+<h1 *ngIf="loading">Loading....</h1>
+<div *ngIf="!loading && !isError" class="card card-body">
+  <h3>{{post?.title}}</h3>
+  <p> {{post?.body}} </p>
+</div>
+
+<div *ngIf="isError" class="alert alert-danger">
+  The post you are looking for does not exist!!!
+</div>

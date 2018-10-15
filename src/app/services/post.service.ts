@@ -16,7 +16,7 @@ const httpOptions = {
 export class PostService {
 
   postsUrl: any = 'https://jsonplaceholder.typicode.com/posts';
-  constructor( private http: HttpClient ) { };
+  constructor( private http: HttpClient ) { }
 
     getPosts(): Observable<Post[]> {
       return this.http.get<Post[]>(this.postsUrl);
@@ -37,6 +37,10 @@ export class PostService {
       return this.http.delete<Post>(url, httpOptions);
     }
 
+    getSinglePost(id: any) {
+      const url = `${this.postsUrl}/${id}`;
+      return this.http.get<Post>(url);
+    }
 
 
 }

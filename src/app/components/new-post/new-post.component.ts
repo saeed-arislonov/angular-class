@@ -17,8 +17,6 @@ export class NewPostComponent implements OnInit {
   @Input() isEdit: boolean;
   ngOnInit() { }
 
-
-
   updatePost() {
     this.postService.updatePost(this.currentPost)
     .subscribe(post => {

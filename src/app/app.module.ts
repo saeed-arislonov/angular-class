@@ -12,6 +12,7 @@ import { NewPostComponent } from './components/new-post/new-post.component';
 import { AppRouteModule } from './/app-route.module';
 import { HomeComponent } from './components/home/home.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { SelectedPostComponent } from './components/selected-post/selected-post.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     PostsComponent,
     NewPostComponent,
     HomeComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    SelectedPostComponent
   ],
   imports: [
     BrowserModule,

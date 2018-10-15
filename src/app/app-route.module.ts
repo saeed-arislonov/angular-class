@@ -6,11 +6,13 @@ import { HomeComponent } from './components/home/home.component';
 import { UsersComponent } from './components/users/users.component';
 import { PostsComponent } from './components/posts/posts.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { SelectedPostComponent } from './components/selected-post/selected-post.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
   { path: 'users', component: UsersComponent },
   { path: 'posts', component: PostsComponent },
+  { path: 'posts/:id', component: SelectedPostComponent },
   { path: '**', component: NotFoundComponent }
 ];
 
